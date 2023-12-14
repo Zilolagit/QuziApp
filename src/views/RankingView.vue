@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="data-table">
+            <h2>Top {{ customers?.length }} Players in the World</h2>
             <DataTable v-model:filters="filters" :value="customers" paginator showGridlines :rows="10" dataKey="id"
                 filterDisplay="menu" :loading="loading" :globalFilterFields="['name', 'country.name', 'representative.name', 'balance', 'status']">
             <template #header>
@@ -118,21 +119,10 @@
 <script setup>
 
 // PrimeVue Components
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-
 import { ref, onMounted } from 'vue';
 import { CustomerService } from '@/service/CustomerService';
 import { FilterMatchMode, FilterOperator } from 'primevue/api';
-import ProgressBar from 'primevue/progressbar';
-import Slider from 'primevue/slider';
-import Dropdown from 'primevue/dropdown';
-import InputNumber from 'primevue/inputnumber';
-import Tag from 'primevue/tag';
-import MultiSelect from 'primevue/multiselect';
-import Button from 'primevue/button';
-import InputText from 'primevue/inputtext';
-import TriStateCheckbox from 'primevue/tristatecheckbox';
+
 
 const customers = ref();
 const filters = ref();

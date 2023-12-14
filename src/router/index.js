@@ -29,6 +29,11 @@ const router = createRouter({
       name: 'logout',
       component: () => import("@/views/RankingView.vue")
     },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import("@/views/ContactView.vue")
+    },
   ]
 })
 

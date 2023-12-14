@@ -49,10 +49,7 @@
 <script setup>
 
 // PrimeVue Components
-import Menu from 'primevue/menu';
-import Badge from "primevue/badge"
-import Avatar from "primevue/avatar"
-import ScrollTop from 'primevue/scrolltop';
+
 
 // Router & Ref & onMounted
 import { ref } from "vue";
@@ -88,9 +85,17 @@ const items = ref([
       {
         label: 'Ranking',
         icon: 'pi pi-chart-bar',
-        shortcut: '⌘+S',
+        shortcut: 'Ctrl+R',
         route: "/ranking"
-
+      },
+      {
+        label: 'History',
+        icon: 'pi pi-clock',
+        shortcut: 'Ctrl + H',
+      },
+      {
+        label: 'Testimonials',
+        icon: 'pi pi-heart',
       },
     ]
   },
@@ -103,6 +108,11 @@ const items = ref([
         shortcut: '⌘+O',
       },
       {
+        label: 'Contact',
+        icon: 'pi pi-question',
+        route: '/contact'
+      },
+      {
         label: 'Messages',
         icon: 'pi pi-inbox',
         badge: 2
@@ -110,7 +120,7 @@ const items = ref([
       {
         label: 'Logout',
         icon: 'pi pi-sign-out',
-        shortcut: '⌘+Q',
+        shortcut: 'Ctrl+Q',
         route: "/login",
       }
     ]
@@ -119,6 +129,8 @@ const items = ref([
     separator: true
   }
 ]);
+
+const CtrlPress = ref(false)
 
 // My Functions
 
@@ -129,6 +141,18 @@ onMounted(() => {
     router.replace("/login")
   }
 });
+
+window.onkeydown = (event) => {
+  if (event.key == "Control" ){
+    CtrlPress.value = true
+    console.log(CtrlPress.value);
+    return
+  }
+  if (CtrlPress && event.key == "q" || event.key == "Q"){
+    router.replace("/login")
+    return
+  }
+}
 
 </script>
 

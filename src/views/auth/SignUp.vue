@@ -27,17 +27,30 @@
                         <label for="password">Password</label>
                     </span>
 
-                    <MultiSelect v-model="selectedCities" required filter :options="cities" optionLabel="name"
-                        placeholder="Select Your Country" :maxSelectedLabels="6" class="w-full md:w-20rem">
+
+                    <Dropdown v-model="country" :options="cities" filter optionLabel="name"
+                        placeholder="Select a Country" class="w-full md:w-14rem">
+                        <template #value="slotProps">
+                            <div v-if="slotProps.value" class="flex align-items-center">
+                                <img :alt="slotProps.value.label"
+                                    src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+                                    :class="`mr-2 flag flag-${slotProps.value.code.toLowerCase()}`" style="width: 18px" />
+                                <div>{{ slotProps.value.name }}</div>
+                            </div>
+                            <span v-else>
+                                {{ slotProps.placeholder }}
+                            </span>
+                        </template>
                         <template #option="slotProps">
                             <div class="flex align-items-center">
-                                <img alt="imageOfCountries"
-                                    :src="`https://flagsapi.com/${slotProps.option.code}/flat/64.png`"
-                                    :class="`flag flag-${slotProps.option.code.toLowerCase()} mr-2`" style="width: 18px" />
+                                <img :alt="slotProps.option.label"
+                                    src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+                                    :class="`mr-2 flag flag-${slotProps.option.code.toLowerCase()}`" style="width: 18px" />
                                 <div>{{ slotProps.option.name }}</div>
                             </div>
                         </template>
-                    </MultiSelect>
+                    </Dropdown>
+
                     <span class="p-float-label">
                         <InputMask id="tel" v-model="t_number" required mask="99-999-99-99" placeholder="99-999-99-99" />
                         <label for="tel">Telephone Number</label>
@@ -54,11 +67,7 @@
 <script setup >
 
 // PrimeVue Components
-import Password from 'primevue/password';
-import InputText from 'primevue/inputtext';
-import InputMask from 'primevue/inputmask';
-import Button from 'primevue/button';
-import MultiSelect from 'primevue/multiselect';
+
 
 // Router & Ref
 import router from '@/router';
@@ -72,7 +81,6 @@ const useAuth = useAuthStore()
 let { username, password, country, t_number } = storeToRefs(useAuth)
 
 // My Variables
-const selectedCities = ref(country);
 
 const cities = ref([
     { name: 'Uzbekistan', code: 'UZ' },
@@ -121,7 +129,7 @@ a {
     width: 100%;
 }
 
-.md\:w-20rem {
+.md\:w-20rem, .md\:w-14rem  {
     width: 100% !important;
     margin-bottom: 30px;
 }
@@ -183,6 +191,7 @@ a {
         &__flex {
             min-width: 450px;
         }
-    }
 }
-</style>
+
+
+}</style>

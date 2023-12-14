@@ -24,9 +24,7 @@
 <script setup >
 
 // PrimeVue Components
-import Password from 'primevue/password';
-import InputText from 'primevue/inputtext';
-import Button from 'primevue/button';
+
 
 // Router
 import router from '@/router';
@@ -52,6 +50,8 @@ function login() {
     username.value = localStorage.getItem("username") || ""
     password.value = localStorage.getItem("password") || ""
     country.value = localStorage.getItem("country") || []
+    console.log(country.value);
+    console.log(typeof country.value);
     if (username.value == loginUserName.value && password.value == loginPassword.value) {
         router.replace("/")
     } else {
