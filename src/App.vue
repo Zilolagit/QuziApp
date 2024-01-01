@@ -48,9 +48,6 @@
 
 <script setup>
 
-// PrimeVue Components
-
-
 // Router & Ref & onMounted
 import { ref } from "vue";
 import { onMounted } from 'vue';
@@ -106,6 +103,7 @@ const items = ref([
         label: 'Settings',
         icon: 'pi pi-cog',
         shortcut: '⌘+O',
+        route : "/settings"
       },
       {
         label: 'Contact',
@@ -143,16 +141,12 @@ onMounted(() => {
 });
 
 window.onkeydown = (event) => {
-  if (event.key == "Control" ){
-    CtrlPress.value = true
-    console.log(CtrlPress.value);
-    return
-  }
-  if (CtrlPress && event.key == "q" || event.key == "Q"){
+  if (event.ctrlKey && ( event.key == "q" || event.key == "Q")){
     router.replace("/login")
-    return
+    return false
   }
 }
+
 
 </script>
 

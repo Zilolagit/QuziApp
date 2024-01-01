@@ -66,9 +66,6 @@
 
 <script setup >
 
-// PrimeVue Components
-
-
 // Router & Ref
 import router from '@/router';
 import { RouterLink } from 'vue-router';

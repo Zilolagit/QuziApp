@@ -27,6 +27,7 @@ import Button from 'primevue/button';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
 import Password from 'primevue/password';
 import InputMask from 'primevue/inputmask';
+import Textarea from 'primevue/textarea';
 
 const app = createApp(App)
 
@@ -52,5 +53,6 @@ app.component("TriStateCheckbox", TriStateCheckbox)
 app.component("Password", Password)
 app.component("InputMask", InputMask)
 app.component("MultiSelect", MultiSelect)
+app.component("Textarea", Textarea)
 
 app.mount('#app')
